@@ -1,0 +1,527 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+#app {
+    min-height: 100vh;
+    background: white;
+}
+
+/* Login Form Styles */
+#login-form {
+    padding: 40px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#login-form h2 {
+    margin-bottom: 30px;
+    color: #4a5568;
+    font-size: 28px;
+}
+
+#loginForm {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#loginForm input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#loginForm input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#loginForm button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#loginForm button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#registerBtn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+}
+
+/* Register Form Styles */
+#register-container {
+    padding: 40px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#registerForm input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#registerForm input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#registerForm button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#registerForm button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#backToLoginBtn {
+    background: linear-gradient(135deg, #718096 0%, #4a5568 100%) !important;
+}
+
+/* Dashboard Styles */
+#dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Menu Styles */
+#menu {
+    width: 250px;
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    color: white;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+#menu.collapsed {
+    width: 60px;
+}
+
+#menu .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#menu .menu-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#menu .menu-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+#menu .menu-header button:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+#menu ul {
+    list-style: none;
+    padding: 10px 0;
+}
+
+#menu li {
+    margin-bottom: 2px;
+}
+
+#menu button {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+#menu button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+#menu button i {
+    margin-right: 12px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+#menu button span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Collapsed menu styles */
+#menu.collapsed .menu-header h2 {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#menu.collapsed ul {
+    padding: 5px 0;
+}
+
+#menu.collapsed li {
+    text-align: center;
+}
+
+#menu.collapsed button {
+    padding: 12px 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+#menu.collapsed button i {
+    margin-right: 0;
+}
+
+#menu.collapsed button span {
+    display: none;
+}
+
+/* Content Styles */
+#content {
+    flex: 1;
+    padding: 20px;
+    background: #f8f9fa;
+    overflow-y: auto;
+}
+
+#content h2 {
+    color: #2d3748;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+#content h3 {
+    color: #4a5568;
+    margin: 15px 0 10px 0;
+}
+
+/* Form Styles */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+form h3 {
+    margin-top: 0;
+    color: #2d3748;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+tr:hover {
+    background-color: #f7fafc;
+}
+
+tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+/* Button Styles in Tables */
+td button {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin: 0 3px;
+    border-radius: 4px;
+}
+
+.view-btn {
+    background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%) !important;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%) !important;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2d3748;
+    font-size: 18px;
+}
+
+.close-modal {
+    background: #718096;
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.close-modal:hover {
+    background: #4a5568;
+}
+
+/* Toggle Form Button */
+.toggle-form-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.toggle-form-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #dashboard {
+        flex-direction: column;
+    }
+    
+    #menu {
+        width: 100%;
+    }
+    
+    #menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #menu li {
+        margin: 3px;
+    }
+    
+    #menu button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    #content {
+        padding: 15px;
+    }
+    
+    form {
+        padding: 15px;
+    }
+    
+    th, td {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    #menu ul {
+        flex-direction: column;
+    }
+    
+    #menu button {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    #menu button i {
+        margin-right: 0;
+    }
+    
+    #menu button span {
+        display: none;
+    }
+    
+    .modal-content {
+        padding: 15px;
+        width: 95%;
+    }
+}

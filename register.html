@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - HRM Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="register-container" style="padding: 40px; text-align: center;">
+            <div class="register-form-container" style="max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                <h2>Đăng ký tài khoản mới</h2>
+                <p style="color: #718096; margin-bottom: 30px;">Vui lòng nhập thông tin để tạo tài khoản</p>
+                <form id="registerForm">
+                    <input type="text" id="regUsername" placeholder="Tên đăng nhập" required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px;">
+                    <input type="password" id="regPassword" placeholder="Mật khẩu" required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px;">
+                    <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu" required style="width: 100%; padding: 15px; margin-bottom: 25px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px;">
+                    <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                        Đăng ký
+                    </button>
+                    <button type="button" id="backToLoginBtn" style="width: 100%; padding: 15px; margin-top: 15px; background: linear-gradient(135deg, #718096 0%, #4a5568 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                        Quay lại đăng nhập
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>
