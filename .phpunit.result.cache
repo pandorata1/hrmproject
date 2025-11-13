@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DatabaseConnectionTest::testUsersTableExists":4},"times":{"SimpleTest::testTrueAssertsToTrue":0,"AuthControllerTest::testAuthControllerClassExists":0.007,"DatabaseConnectionTest::testDatabaseConnection":0.007,"DatabaseConnectionTest::testUsersTableExists":0.029}}

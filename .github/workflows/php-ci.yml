@@ -1,0 +1,97 @@
+name: PHP CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  php-tests:
+    name: PHP Tests
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: hrm_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, pdo, pdo_mysql, mysqli
+        coverage: none
+
+    - name: Check PHP version
+      run: php -v
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Set up database schema
+      run: |
+        mysql -h 127.0.0.1 -u root -prootpassword hrm_db < init.sql
+
+    - name: Run PHP syntax check
+      run: find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n 1 -P 4 php -l
+
+    - name: Run PHPUnit tests
+      run: vendor/bin/phpunit
+
+    - name: Archive test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: |
+          ./tests/
+          ./phpunit.xml
+
+  deploy:
+    name: Deploy to Production
+    needs: php-tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-dev
+
+    - name: Deploy to server
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+      with:
+        server: 103.97.126.29
+        username: ohpspbfv
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /
+        local-dir: ./
+        exclude: |
+          **/.git*
+          **/.git*/**
+          README.md
+          composer.json
+          composer.lock
+          phpunit.xml
+          tests/
+          .github/
