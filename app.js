@@ -4,20 +4,35 @@ import * as Department from './departmentModule.js';
 import * as Position from './positionModule.js';
 import * as Salary from './salaryModule.js';
 import * as Attendance from './attendanceModule.js';
+<<<<<<< HEAD
 import * as Leave from './leaveManagementModule.js'; // Updated to new module
 import * as Performance from './performanceModule.js';
 import * as DataManagement from './dataManagementModule.js';
 import * as EmployeeManagement from './employeeManagementModule.js';
+=======
+import * as Leave from './leaveModule.js';
+import * as Performance from './performanceModule.js';
+import * as DataManagement from './dataManagementModule.js';
+import * as EmployeeManagement from './employeeManagementModule.js'; // New module
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
 
 const modules = {
     auth: Auth,
     employeeDb: EmployeeDb,
+<<<<<<< HEAD
     employeeManagement: EmployeeManagement,
+=======
+    employeeManagement: EmployeeManagement, // New module
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     department: Department,
     position: Position,
     salary: Salary,
     attendance: Attendance,
+<<<<<<< HEAD
     leave: Leave, // Updated to new module
+=======
+    leave: Leave,
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     performance: Performance,
     dataManagement: DataManagement
 };
@@ -28,7 +43,11 @@ const dashboard = document.getElementById('dashboard');
 const menu = document.getElementById('menu');
 const content = document.getElementById('content');
 
+<<<<<<< HEAD
 async function initApp() {
+=======
+function initApp() {
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     if (!Auth.isLoggedIn()) {
         showLogin();
     } else {
@@ -115,6 +134,7 @@ function toggleMenu() {
     }
 }
 
+<<<<<<< HEAD
 async function loadModule(moduleName) {
     content.innerHTML = '<div style="text-align: center; padding: 20px;">Đang tải...</div>';
     
@@ -125,6 +145,18 @@ async function loadModule(moduleName) {
             await modules[moduleName].initModule(content);
         } else if (modules[moduleName] && typeof modules[moduleName].init === 'function') {
             await modules[moduleName].init(content);
+=======
+function loadModule(moduleName) {
+    content.innerHTML = '<div style="text-align: center; padding: 20px;">Đang tải...</div>';
+    
+    // Add slight delay to show loading state
+    setTimeout(() => {
+        // Use initModule if available, otherwise use init
+        if (modules[moduleName] && typeof modules[moduleName].initModule === 'function') {
+            modules[moduleName].initModule(content);
+        } else if (modules[moduleName] && typeof modules[moduleName].init === 'function') {
+            modules[moduleName].init(content);
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
         } else {
             content.innerHTML = `<p>Module "${moduleName}" chưa được triển khai.</p>`;
         }
@@ -132,6 +164,7 @@ async function loadModule(moduleName) {
 }
 
 // Make global functions for inline event handlers
+<<<<<<< HEAD
 window.deletePosition = async function(id) {
     if (confirm('Bạn có chắc chắn muốn xóa vị trí này?')) {
         await Position.deletePosition(id);
@@ -145,6 +178,21 @@ window.deleteDepartment = async function(id) {
         await Department.deleteDepartment(id);
         // Refresh the current module
         await loadModule('department');
+=======
+window.deletePosition = function(id) {
+    if (confirm('Bạn có chắc chắn muốn xóa vị trí này?')) {
+        Position.deletePosition(id);
+        // Refresh the current module
+        loadModule('position');
+    }
+};
+
+window.deleteDepartment = function(id) {
+    if (confirm('Bạn có chắc chắn muốn xóa phòng ban này?')) {
+        Department.deleteDepartment(id);
+        // Refresh the current module
+        loadModule('department');
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     }
 };
 

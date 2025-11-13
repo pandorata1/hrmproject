@@ -465,6 +465,7 @@ td button {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+<<<<<<< HEAD
     /* Giữ nguyên layout sidebar bên cạnh ngay cả trên điện thoại */
     #dashboard {
         flex-direction: row; /* Giữ nguyên row layout */
@@ -496,6 +497,29 @@ td button {
     
     #menu button span {
         display: inline; /* Hiển thị text */
+=======
+    #dashboard {
+        flex-direction: column;
+    }
+    
+    #menu {
+        width: 100%;
+    }
+    
+    #menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #menu li {
+        margin: 3px;
+    }
+    
+    #menu button {
+        padding: 8px 12px;
+        font-size: 13px;
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     }
     
     #content {
@@ -513,6 +537,7 @@ td button {
 }
 
 @media (max-width: 480px) {
+<<<<<<< HEAD
     /* Cho màn hình rất nhỏ, vẫn giữ sidebar bên cạnh */
     #dashboard {
         flex-direction: row;
@@ -539,10 +564,31 @@ td button {
     
     #menu button span {
         display: inline; /* Vẫn hiển thị text */
+=======
+    #menu ul {
+        flex-direction: column;
+    }
+    
+    #menu button {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    #menu button i {
+        margin-right: 0;
+    }
+    
+    #menu button span {
+        display: none;
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     }
     
     .modal-content {
         padding: 15px;
         width: 95%;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c

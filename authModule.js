@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 // API base URL - sử dụng URL tương đối cho máy chủ PHP tích hợp
 const API_BASE_URL = 'backend/api.php';
 
+=======
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
 export function isLoggedIn() {
     return !!localStorage.getItem('sessionToken');
 }
@@ -42,6 +45,7 @@ export function renderLoginForm(container, onLogin) {
 }
 
 async function login(username, password) {
+<<<<<<< HEAD
     try {
         // Sử dụng URL trực tiếp đến api.php với endpoint trong query parameter
         const baseUrl = window.location.origin;
@@ -108,6 +112,25 @@ export async function register(username, email, password) {
         console.error('Error during registration:', error);
         return { success: false, message: 'Có lỗi xảy ra trong quá trình đăng ký!' };
     }
+=======
+    await simulateDelay();
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.username === username && u.password === simpleHash(password));
+    if (user) {
+        localStorage.setItem('sessionToken', 'loggedIn');
+        return true;
+    }
+    alert('Tên đăng nhập hoặc mật khẩu không đúng!');
+    return false;
+}
+
+function simpleHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+    }
+    return hash.toString(16);
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
 }
 
 async function simulateDelay() {

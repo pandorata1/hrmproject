@@ -1,5 +1,6 @@
 let employees = [];
 
+<<<<<<< HEAD
 // API base URL
 const API_BASE_URL = '/backend/api.php';
 
@@ -25,10 +26,31 @@ async function loadEmployees() {
         }
     } catch (error) {
         console.error('Error loading employees:', error);
+=======
+export function init() {
+    loadEmployees();
+    if (employees.length === 0) {
+        // Không tạo dữ liệu mẫu nữa
+        saveEmployees();
+    }
+}
+
+function loadEmployees() {
+    const data = localStorage.getItem('employees');
+    if (data) {
+        try {
+            employees = JSON.parse(data);
+        } catch (e) {
+            console.error('Error parsing employees data:', e);
+            employees = [];
+        }
+    } else {
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
         employees = [];
     }
 }
 
+<<<<<<< HEAD
 async function saveEmployees() {
     // This function is kept for compatibility but not used since we're using API calls
     try {
@@ -124,16 +146,83 @@ export async function filterEmployees(predicate) {
 
 export async function sortEmployees(compareFn) {
     await loadEmployees();
+=======
+function saveEmployees() {
+    try {
+        localStorage.setItem('employees', JSON.stringify(employees, null, 2));
+    } catch (e) {
+        console.error('Error saving employees data:', e);
+    }
+}
+
+function initDefaultEmployees() {
+    // Không tạo dữ liệu mẫu
+    employees = [];
+    saveEmployees();
+}
+
+export function getAllEmployees() {
+    loadEmployees();
+    return [...employees];
+}
+
+export function getEmployeeById(id) {
+    loadEmployees();
+    return employees.find(e => e.id === id);
+}
+
+export function addEmployee(employee) {
+    loadEmployees();
+    employee.id = Math.max(...employees.map(e => e.id), 0) + 1;
+    // Set default values if not provided
+    if (employee.bonus === undefined) employee.bonus = 0;
+    if (employee.deduction === undefined) employee.deduction = 0;
+    if (employee.hireDate === undefined) employee.hireDate = new Date().toISOString().split('T')[0];
+    
+    employees.push(employee);
+    saveEmployees();
+}
+
+export function updateEmployee(id, updates) {
+    loadEmployees();
+    const index = employees.findIndex(e => e.id === id);
+    if (index !== -1) {
+        employees[index] = { ...employees[index], ...updates };
+        saveEmployees();
+    }
+}
+
+export function deleteEmployee(id) {
+    loadEmployees();
+    employees = employees.filter(e => e.id !== id);
+    saveEmployees();
+}
+
+// Higher-order for filter/sort
+export function filterEmployees(predicate) {
+    loadEmployees();
+    return employees.filter(predicate);
+}
+
+export function sortEmployees(compareFn) {
+    loadEmployees();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     return [...employees].sort(compareFn);
 }
 
 // Export data as JSON string
+<<<<<<< HEAD
 export async function exportAsJson() {
     await loadEmployees();
+=======
+export function exportAsJson() {
+    loadEmployees();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     return JSON.stringify(employees, null, 2);
 }
 
 // Import data from JSON string
+<<<<<<< HEAD
 export async function importFromJson(jsonString) {
     try {
         const parsed = JSON.parse(jsonString);
@@ -142,6 +231,14 @@ export async function importFromJson(jsonString) {
             // In a real implementation, you might want to handle this differently
             employees = parsed;
             await saveEmployees();
+=======
+export function importFromJson(jsonString) {
+    try {
+        const parsed = JSON.parse(jsonString);
+        if (Array.isArray(parsed)) {
+            employees = parsed;
+            saveEmployees();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
             return true;
         }
         return false;

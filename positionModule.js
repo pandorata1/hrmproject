@@ -1,5 +1,6 @@
 let positions = [];
 
+<<<<<<< HEAD
 // API base URL
 const API_BASE_URL = '/backend/api.php';
 
@@ -13,10 +14,23 @@ async function loadPositions() {
         }
     } catch (error) {
         console.error('Error loading positions:', error);
+=======
+function loadPositions() {
+    const data = localStorage.getItem('positions');
+    if (data) {
+        try {
+            positions = JSON.parse(data);
+        } catch (e) {
+            console.error('Error parsing positions data:', e);
+            positions = [];
+        }
+    } else {
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
         positions = [];
     }
 }
 
+<<<<<<< HEAD
 async function savePositions() {
     // This function is kept for compatibility but not used since we're using API calls
     console.log('Positions saved to backend');
@@ -124,6 +138,56 @@ export async function deletePosition(id) {
     } catch (error) {
         console.error('Error deleting position:', error);
         throw error;
+=======
+function savePositions() {
+    try {
+        localStorage.setItem('positions', JSON.stringify(positions, null, 2));
+    } catch (e) {
+        console.error('Error saving positions data:', e);
+    }
+}
+
+export function init() {
+    loadPositions();
+    if (positions.length === 0) {
+        // Khởi tạo dữ liệu mặc định
+        addPosition('Developer', 'Software development', 40000);
+        addPosition('Manager', 'Team management', 60000);
+        addPosition('Designer', 'UI/UX design', 35000);
+        addPosition('HR Specialist', 'Human resources', 30000);
+    }
+}
+
+export function getAllPositions() {
+    loadPositions();
+    return [...positions];
+}
+
+export function addPosition(title, description, salaryBase) {
+    loadPositions();
+    const id = Math.max(...positions.map(p => p.id || 0), 0) + 1;
+    positions.push({ id, title, description, salaryBase });
+    savePositions();
+}
+
+export function editPosition(id, updates) {
+    loadPositions();
+    const position = positions.find(p => p.id === id);
+    if (position) {
+        Object.assign(position, updates);
+        savePositions();
+    }
+}
+
+export function deletePosition(id) {
+    loadPositions();
+    positions = positions.filter(p => p.id !== id);
+    savePositions();
+    // Re-render the table if it exists
+    const container = document.getElementById('positions-container');
+    if (container) {
+        renderTable(container);
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     }
 }
 
@@ -132,7 +196,11 @@ async function simulateDelay() {
 }
 
 export async function initModule(container) {
+<<<<<<< HEAD
     await loadPositions();
+=======
+    loadPositions();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     
     // Create container with ID for re-rendering
     const positionsContainer = document.createElement('div');
@@ -167,6 +235,7 @@ export async function initModule(container) {
             salaryBase: parseFloat(document.getElementById('salaryBase').value)
         };
         if (validatePosition(position)) {
+<<<<<<< HEAD
             try {
                 await addPosition(position.title, position.description, position.salaryBase);
                 alert('Vị trí đã được thêm thành công');
@@ -175,6 +244,13 @@ export async function initModule(container) {
             } catch (error) {
                 alert('Error adding position: ' + error.message);
             }
+=======
+            await simulateDelay(); // Giả lập async
+            addPosition(position.title, position.description, position.salaryBase);
+            alert('Vị trí đã được thêm thành công');
+            form.reset();
+            renderTable(positionsContainer);
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
         } else {
             alert('Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.');
         }
@@ -185,6 +261,7 @@ export async function initModule(container) {
     const table = document.createElement('table');
     table.id = 'positionsTable';
     positionsContainer.appendChild(table);
+<<<<<<< HEAD
     await renderTable(positionsContainer);
 }
 
@@ -194,6 +271,16 @@ function validatePosition(pos) {
 
 async function renderTable(container) {
     const positions = await getAllPositions();
+=======
+    renderTable(positionsContainer);
+}
+
+function validatePosition(pos) {
+    return pos.title && pos.description && pos.salaryBase > 0;
+}
+
+function renderTable(container) {
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     const table = container.querySelector('#positionsTable');
     if (!table) return;
     
@@ -208,12 +295,21 @@ async function renderTable(container) {
             </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
             ${positions.map(pos => `
                 <tr>
                     <td>${pos.id}</td>
                     <td>${pos.title || pos.name || 'Không có tên'}</td>
                     <td>${pos.description || ''}</td>
                     <td>${pos.salary_base ? parseFloat(pos.salary_base).toLocaleString() : '0'} VNĐ</td>
+=======
+            ${getAllPositions().map(pos => `
+                <tr>
+                    <td>${pos.id}</td>
+                    <td>${pos.title}</td>
+                    <td>${pos.description}</td>
+                    <td>${pos.salaryBase.toLocaleString()} VNĐ</td>
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
                     <td>
                         <button onclick="deletePosition(${pos.id})" style="background: #f56565;">Xóa</button>
                     </td>
@@ -224,18 +320,31 @@ async function renderTable(container) {
 }
 
 // Export data as JSON string
+<<<<<<< HEAD
 export async function exportAsJson() {
     await loadPositions();
+=======
+export function exportAsJson() {
+    loadPositions();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     return JSON.stringify(positions, null, 2);
 }
 
 // Import data from JSON string
+<<<<<<< HEAD
 export async function importFromJson(jsonString) {
+=======
+export function importFromJson(jsonString) {
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
     try {
         const parsed = JSON.parse(jsonString);
         if (Array.isArray(parsed)) {
             positions = parsed;
+<<<<<<< HEAD
             await savePositions();
+=======
+            savePositions();
+>>>>>>> a380d625c488eb8fe1868308530a9783db0eba5c
             return true;
         }
         return false;
